@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复请求处理</title>
+</head>
+<body>
+    <button>发送请求</button>
+    <button>取消请求</button>
+    <script>
+        //获取元素对象
+        const btns = document.querySelectorAll('button');
+        var x = null;
+        //标识变量
+        let flag = false;
+        btns[0].onclick = function(){
+            //判断标识变量
+            if(flag)//如果正在发送，直接取消，创建一个新请求
+                x.abort();
+            x = new XMLHttpRequest();
+            //修改标识变量值
+            flag = true;
+            x.open('GET','http://127.0.0.1:8000/delay');
+            x.send();
+            x.onreadystatechange = function(){
+                if(x.readyState === 4){
+                    //修改标识变量
+                    flag = false;
+                }
+            }
+        }
+
+        //abort 取消请求
+        btns[1].onclick = function(){
+            x.abort();
+        }
+    </script>
+</body>
+</html>
