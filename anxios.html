@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin="anonymous" src="https://cdn.bootcdn.net/ajax/libs/axios/1.1.3/axios.js"></script>
+    <title>axios 发送AJAX请求</title>
+</head>
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX</button>
+
+    <script>
+        const btn = document.querySelectorAll('button');
+        
+        //配置base URL
+        axios.defaults.baseURL = 'http://127.0.0.1:8000';
+        btn[0].onclick = function(){
+            //GET请求
+            axios.get('/axiosServer',{
+                //url参数
+                params:{
+                    id:114,
+                    vip:007
+                },
+                //请求头信息
+                headers:{
+                    name:'KUN.A.A',
+                    age:'20'
+                }
+            }).then(value => {
+                console.log(value);
+            });
+        }
+
+        btn[1].onclick = function(){
+            //POST
+            axios.post('/axiosServer',
+                {//请求体
+                    username:'admin',
+                    password:'123456'
+                },{
+                //url参数
+                params:{
+                    id:514,
+                    vip:005
+                },
+                //请求头信息
+                headers:{
+                    height:'1990cm',
+                    weight:'500kg'
+                }
+            })
+        }
+        
+        btn[2].onclick = function(){
+            axios({
+                //请求方法
+                method : 'POST',
+                //url
+                url:'/axiosServer',
+                //url参数
+                params:{
+                    vip:1919,
+                    level:810
+                },
+                //头信息
+                headers:{
+                    h:150,
+                    w:120
+                },
+                //请求体餐数
+                data:{
+                    username:'KUN.A.A',
+                    password:'1145141919810'
+                }
+            }).then(Response => {
+                //以下代码获取响应体中内容
+                //可根据具体要求修改
+                console.log(Response);
+                //响应状态码
+                console.log(Response.status);
+                //响应状态字符串
+                console.log(Response.statusText);
+                //响应头信息
+                console.log(Response.headers);
+                //响应体
+                console.log(Response.data);
+            })
+        }
+    </script>
+</body>
+</html>
