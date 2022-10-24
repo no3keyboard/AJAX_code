@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery发送AJAX请求</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Jquery发送AJAX请求</h2>
+        <button class="btn-primary">GET</button>
+        <button class="btn-danger">POST</button>
+        <button class="btn-info">通用型方法AJAX</button>
+    </div>
+    <script>
+        $('button').eq.click(function(){
+            $.get('http://127.0.0.1:8000/jqueryServer',{a:100,b:200},function(data){
+                console.log(data);
+            }
+            )
+        })
+    </script>
+</body>
+</html>

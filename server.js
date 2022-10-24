@@ -40,6 +40,12 @@ app.get('/delay',(request,response)=>{
 	}, 3000);
 })
 
+//JQuery服务
+app.get('/jqueryServer',(request,response)=>{
+	//设置相应头,设置允许跨域
+    response.setHeader('Access-Control-Allow-Origin','*');
+	response.send('Hello Jquery AJAX');
+})
 
 //4.监听端口启动服务
 app.listen(8000,()=>{
